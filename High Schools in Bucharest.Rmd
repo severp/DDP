@@ -1,0 +1,21 @@
+---
+title: "High Schools in Bucharest"
+author: "SEVER POPA"
+date: "April 21, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The map below shows 20 of the high scools in Bucharest
+
+```{r}
+library(leaflet) # load leaflet package
+hs <- read.csv("HighSchools2.csv") # load the data from the working directory
+hsMap <- leaflet() %>% addTiles() %>% addCircleMarkers(data = hs, popup = ~nume, 
+                                                col = ~color, weight = 3,
+                                                clusterOptions = markerClusterOptions())
+hsMap
+```
